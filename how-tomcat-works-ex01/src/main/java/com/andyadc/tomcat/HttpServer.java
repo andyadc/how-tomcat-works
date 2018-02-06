@@ -14,14 +14,15 @@ import java.net.Socket;
 public class HttpServer {
 
     public static final String WEB_ROOT = System.getProperty("user.dir")
-            + File.separator + "webroot";
+            + File.separator + "files";
 
     private static final String SHUTDOWN_COMMAND = "/shutdown";
 
-    private boolean shutdown = false;
+    private volatile boolean shutdown = false;
 
     public static void main(String[] args) {
-
+        HttpServer server = new HttpServer();
+        server.await();
     }
 
     public void await() {
@@ -30,26 +31,34 @@ public class HttpServer {
 
         try {
             serverSocket = new ServerSocket(port, 1, InetAddress.getByName("127.0.0.1"));
-
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
         }
 
         while (!shutdown) {
-            Socket socket = null;
-            InputStream input = null;
-            OutputStream output = null;
+            Socket socket;
+            InputStream input;
+            OutputStream output;
 
             try {
                 socket = serverSocket.accept();
                 input = socket.getInputStream();
                 output = socket.getOutputStream();
 
+                Request request = new Request(input);
+                request.parse();
 
+                Response response = new Response(output);
+                response.setRequest(request);
+                response.sendStaticResource();
+
+                // Close the socket
+                socket.close();
+
+                shutdown = request.getUri().endsWith(SHUTDOWN_COMMAND);
             } catch (Exception e) {
                 e.printStackTrace();
-                continue;
             }
 
         }
