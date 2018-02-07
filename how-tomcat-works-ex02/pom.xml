@@ -1,5 +1,5 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <artifactId>how-tomcat-works</artifactId>
         <groupId>com.andyadc</groupId>
@@ -7,8 +7,9 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>how-tomcat-works-ex01</artifactId>
-    <name>how-tomcat-works-ex01</name>
+    <artifactId>how-tomcat-works-ex02</artifactId>
+    <packaging>war</packaging>
+    <name>how-tomcat-works-ex02</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -18,10 +19,20 @@
 
     <dependencies>
         <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.3</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>how-tomcat-works-ex02</finalName>
+    </build>
 </project>

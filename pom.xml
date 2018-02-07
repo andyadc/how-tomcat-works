@@ -11,6 +11,7 @@
 
     <modules>
         <module>how-tomcat-works-ex01</module>
+        <module>how-tomcat-works-ex02</module>
     </modules>
 
 </project>
