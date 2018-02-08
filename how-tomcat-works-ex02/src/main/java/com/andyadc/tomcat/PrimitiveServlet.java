@@ -1,4 +1,3 @@
-package com.andyadc.tomcat;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
@@ -9,6 +8,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
+ * No package
+ * 编译好后放在files文件夹下
+ *
  * @author andy.an
  * @since 2018/2/7
  */

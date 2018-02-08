@@ -23,7 +23,7 @@ public class ServletProcessor1 {
             URL[] urls = new URL[1];
             URLStreamHandler handler = null;
 
-            File classpath = new File("files");
+            File classpath = new File(Constants.WEB_ROOT);
 
             String repository = (new URL("file", null, classpath.getCanonicalPath() + File.separator)).toString();
 

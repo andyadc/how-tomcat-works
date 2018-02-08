@@ -17,7 +17,8 @@ public class HttpServer1 {
     private volatile boolean shutdown = false;
 
     public static void main(String[] args) {
-
+        HttpServer1 server = new HttpServer1();
+        server.await();
     }
 
     public void await() {
@@ -48,11 +49,20 @@ public class HttpServer1 {
                 response.setRequest(request);
 
                 if (request.getUri().startsWith("/servlet/")) {
-
+                    ServletProcessor1 processor = new ServletProcessor1();
+                    processor.process(request, response);
+                } else {
+                    StaticResourceProcessor processor = new StaticResourceProcessor();
+                    processor.process(request, response);
                 }
+
+                socket.close();
+
+                shutdown = request.getUri().equals(SHUTDOWN_COMMAND);
 
             } catch (Exception e) {
                 e.printStackTrace();
+                System.exit(1);
             }
         }
 
