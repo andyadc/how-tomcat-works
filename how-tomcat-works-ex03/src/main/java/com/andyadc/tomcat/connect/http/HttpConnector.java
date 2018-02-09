@@ -11,10 +11,10 @@ import java.net.Socket;
 public class HttpConnector implements Runnable {
 
     volatile boolean stopped;
-    private String scheme = "http";
+    private static final String SCHEME = "http";
 
     public String getScheme() {
-        return scheme;
+        return SCHEME;
     }
 
     @Override
