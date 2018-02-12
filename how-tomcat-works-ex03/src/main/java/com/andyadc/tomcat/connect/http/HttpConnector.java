@@ -40,6 +40,8 @@ public class HttpConnector implements Runnable {
             }
 
             //TODO
+            HttpProcessor processor = new HttpProcessor();
+
 
         }
     }

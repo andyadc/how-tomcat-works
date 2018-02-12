@@ -49,6 +49,10 @@ public class HttpResponse implements ServletResponse {
         return this.output;
     }
 
+    public void setRequest(HttpRequest request) {
+        this.request = request;
+    }
+
     @Override
     public String getCharacterEncoding() {
         return null;
