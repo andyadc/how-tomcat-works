@@ -30,7 +30,7 @@ public class HttpConnector implements Runnable {
         }
 
         while (!stopped) {
-            Socket socket = null;
+            Socket socket;
 
             try {
                 socket = serverSocket.accept();
@@ -39,10 +39,8 @@ public class HttpConnector implements Runnable {
                 continue;
             }
 
-            //TODO
-            HttpProcessor processor = new HttpProcessor();
-
-
+            HttpProcessor processor = new HttpProcessor(this);
+            processor.process(socket);
         }
     }
 
